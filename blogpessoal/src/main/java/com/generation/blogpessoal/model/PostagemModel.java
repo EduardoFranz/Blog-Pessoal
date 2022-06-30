@@ -32,10 +32,10 @@ public class PostagemModel {
 	private String texto;
 	
 	
-	
+	//@UpdateTimestamp -> Anotação que pega automaticamente hora e data do seu computador
 	@Temporal(TemporalType.TIMESTAMP)  //indicar para o jpa/hibernate que estamos trabalhando com tempo
 	private Date data = new java.sql.Date(System.currentTimeMillis()); //para capturar exatamente a data, quando um dado passar por essa clase
-
+	//trocar Date por LocalDateTime data,maneira diferente de testar data
 	
 	//getters e setters da aplicação
 	public long getId() {
