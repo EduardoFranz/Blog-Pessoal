@@ -41,7 +41,7 @@ public class PostagemController {
 	
 	//findall by id
 	//get passando por parametro id
-	@GetMapping("/{id}")						//@PathVariable -> para esse metodo consiga capturar valor que vira pela url exemplo:/postagem/id
+	@GetMapping("/{id}")						//@PathVariable -> para esse metodo capturar valor que ira vir pela url exemplo:/postagem/id
 	public ResponseEntity<PostagemModel> GetById(@PathVariable long id){
 		return repository.findById(id) //collection
 				.map(resp -> ResponseEntity.ok(resp)) // para pegar resposta positiva  da collection
