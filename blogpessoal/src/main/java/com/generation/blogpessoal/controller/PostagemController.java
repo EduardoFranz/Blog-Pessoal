@@ -15,7 +15,7 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
-import com.generation.blogpessoal.model.PostagemModel;
+import com.generation.blogpessoal.model.Postagem;
 import com.generation.blogpessoal.repository.PostagemRepository;
 
 // é preciso colocar no cabeçalho do método, algumas anotações para indicar que a classe se trata de um controller
@@ -35,14 +35,14 @@ public class PostagemController {
 	// findall
 	@GetMapping // expor para a api que se trata de um método
 				// sempre que vir uma requisição externa atraves url postagem, ira disparar esse método
-	public ResponseEntity<List<PostagemModel>> GetAll(){
+	public ResponseEntity<List<Postagem>> GetAll(){
 		return ResponseEntity.ok(repository.findAll());
 	}
 	
 	//findall by id
 	//get passando por parametro id
 	@GetMapping("/{id}")						//@PathVariable -> para esse metodo capturar valor que ira vir pela url exemplo:/postagem/id
-	public ResponseEntity<PostagemModel> GetById(@PathVariable long id){
+	public ResponseEntity<Postagem> GetById(@PathVariable long id){
 		return repository.findById(id) //collection
 				.map(resp -> ResponseEntity.ok(resp)) // para pegar resposta positiva  da collection
 				.orElse(ResponseEntity.notFound().build()); // caso resposta venha nula retorna um notfound
@@ -53,19 +53,19 @@ public class PostagemController {
 	//find by titulo
 	//dentro das chaves passa o atributo especifico
 	@GetMapping("/titulo/{titulo}") //sub-rota
-	public ResponseEntity<List<PostagemModel>> GetByTitulo(@PathVariable String titulo){
+	public ResponseEntity<List<Postagem>> GetByTitulo(@PathVariable String titulo){
 		return ResponseEntity.ok(repository.findAllByTituloContainingIgnoreCase(titulo));
 		// trazer tudo de acordo com que digitamos
 	}
 	
 	@PostMapping
-	public ResponseEntity<PostagemModel> post (@RequestBody PostagemModel postagem){
+	public ResponseEntity<Postagem> post (@RequestBody Postagem postagem){
 		return ResponseEntity.status(HttpStatus.CREATED).body(repository.save(postagem));
 	}
 	
 	
 	@PutMapping
-	public ResponseEntity<PostagemModel> put (@RequestBody PostagemModel postagem){
+	public ResponseEntity<Postagem> put (@RequestBody Postagem postagem){
 		return ResponseEntity.status(HttpStatus.OK).body(repository.save(postagem));
 	}
 	

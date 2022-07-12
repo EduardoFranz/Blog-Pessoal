@@ -26,27 +26,11 @@ public class Tema {
 	@NotNull
 	private String descricao;
 															   // cascade --> todas as postagens serao alteradas em conjuntos, todas postagens referente ele sofrerão alteçaõ
-	@OneToMany(mappedBy = "tema" ,cascade = CascadeType.ALL)  //mappedBy --> qual classe,tabela,atributo estamos mapeando
+	@OneToMany(mappedBy = "tema" ,cascade = CascadeType.ALL)  // mappedBy --> qual classe,tabela,atributo estamos mapeando
 	@JsonIgnoreProperties("tema") //
 	
-	private List<PostagemModel> postagem;
+	private List<Postagem> postagem;
 
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
 	
 	// Getters e Setters
 	public long getId() {
@@ -65,11 +49,11 @@ public class Tema {
 		this.descricao = descricao;
 	}
 
-	public List<PostagemModel> getPostagem() {
+	public List<Postagem> getPostagem() {
 		return postagem;
 	}
 
-	public void setPostagem(List<PostagemModel> postagem) {
+	public void setPostagem(List<Postagem> postagem) {
 		this.postagem = postagem;
 	}
 	

@@ -40,11 +40,9 @@ public class TemaController {
 			   .orElse(ResponseEntity.notFound().build());
 	}
 	
-<<<<<<< HEAD
-	//trazer pelo nome, findbyNome
-=======
+
 	//trazer pelo nome, findbynome
->>>>>>> d8b3aa4c32fe06b3e894001d44858031da0a5915
+
 	@GetMapping("/nome/{nome}")
 	public ResponseEntity<List<Tema>> getByName (@PathVariable String nome){
 		return ResponseEntity.ok(repository.findAllByDescricaoContainingIgnoreCase(nome));
