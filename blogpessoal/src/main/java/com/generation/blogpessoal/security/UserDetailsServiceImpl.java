@@ -54,7 +54,7 @@ public class UserDetailsServiceImpl implements UserDetailsService {
 		/**
 		 * Se o usuário não existir, o método lança uma Exception do tipo UsernameNotFoundException.
 		 */ 
-		user.orElseThrow(()-> new UsernameNotFoundException(userName+"not found."));
+		user.orElseThrow(()-> new UsernameNotFoundException(userName+" not found."));
 		
 		/**
 		 * Retorna um objeto do tipo UserDetailsImpl criado com os dados recuperados do

@@ -17,7 +17,7 @@ public interface UsuarioRepository extends JpaRepository<Usuario, Long>{
 	* 
 	* select * from tb_usuarios where usuario = "usuario procurado"
 	*/
-	public Optional<Usuario> findByUsuario(String usuario);
+	public Optional<Usuario> findByUsuario (String usuario);
 	
 }
 

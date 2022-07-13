@@ -9,17 +9,12 @@ public class UserLogin {
 	
 	 private String foto;
 	 
-
-
 	 private String nome;
-	 
-		 
+	 	 
 	 private String usuario;
-	 
 	 
 	 private String senha;
 	
-	 
 	 private String token;
 
 
