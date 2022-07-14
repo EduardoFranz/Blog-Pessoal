@@ -8,6 +8,8 @@ package com.generation.blogpessoal.repository;
 
 import java.util.List;
 import org.springframework.data.jpa.repository.JpaRepository;
+import org.springframework.data.repository.query.Param;
+
 import com.generation.blogpessoal.model.Tema;
 
 
@@ -16,7 +18,9 @@ import com.generation.blogpessoal.model.Tema;
 public interface TemaRepository extends JpaRepository<Tema , Long> {
 	
 	//de acordo com o que o cliente digitar vai pegar tudo que contem aquela palavra que ele digitou e ignora letra maiscula e minuscula
-	public List<Tema> findAllByDescricaoContainingIgnoreCase(String descricao);
+	public List <Tema> findAllByDescricaoContainingIgnoreCase (@Param("descricao") String descricao);
+
+	
 	
 }
 

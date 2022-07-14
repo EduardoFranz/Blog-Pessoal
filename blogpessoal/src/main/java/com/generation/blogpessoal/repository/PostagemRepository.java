@@ -2,6 +2,7 @@ package com.generation.blogpessoal.repository;
 import java.util.List;
 
 import org.springframework.data.jpa.repository.JpaRepository;
+import org.springframework.data.repository.query.Param;
 import org.springframework.stereotype.Repository;
 
 import com.generation.blogpessoal.model.Postagem;
@@ -17,7 +18,7 @@ public interface PostagemRepository extends JpaRepository<Postagem, Long>{
 	//FindAllBy  -> buscar todos pelo titulo dentro da classe PostagemModel entidade titulo
 	//Containing -> seria a mesma coisa do LIKE do SQL, tudo que conter os caracteres dentro dessa variavel ele vai trazer
 	//IgnoreCase -> utilizado para ignorar letra maiscula e minuscula
-	public List<Postagem> findAllByTituloContainingIgnoreCase(String título);
+	public List <Postagem> findAllByTituloContainingIgnoreCase(@Param("titulo") String titulo);
 	
 	
 }

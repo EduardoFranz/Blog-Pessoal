@@ -1,4 +1,5 @@
 package com.generation.blogpessoal.model;
+import java.time.LocalDateTime;
 import java.util.Date;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
@@ -8,8 +9,11 @@ import javax.persistence.ManyToOne;
 import javax.persistence.Table;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
+import javax.validation.constraints.NotBlank;
 import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Size;
+
+import org.hibernate.annotations.UpdateTimestamp;
 
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 
@@ -19,14 +23,14 @@ anotações são parametros que colocamos em cima das classes e proproeidades qu
 
 
 @Entity //ele indica essa classe como entidade do jpa/hibernate
-@Table(name = "tb_postagem")  //que essa entidade dentro do banco de dados vai virar uma tabela
+@Table(name = "tb_postagens")  //que essa entidade dentro do banco de dados vai virar uma tabela
 public class Postagem {
 
 	@Id //definir o id da tabela
 	@GeneratedValue(strategy = GenerationType.IDENTITY) // esse atributo vai ser tornar primary key
-	private long id;
+	private Long id;
 	
-	@NotNull//o campo titulo não pode ser nulo
+	@NotBlank//o campo titulo não pode ser nulo
 	@Size(min = 5, max = 100) //determinara quantidade de caracteres que o cliente consegue enviar como titulo
 	private String titulo;
 	
@@ -35,25 +39,27 @@ public class Postagem {
 	private String texto;
 	
 	
-	//@UpdateTimestamp -> Anotação que pega automaticamente hora e data do seu computador
-	@Temporal(TemporalType.TIMESTAMP)  //indicar para o jpa/hibernate que estamos trabalhando com tempo
-	private Date data = new java.sql.Date(System.currentTimeMillis()); //para capturar exatamente a data, quando um dado passar por essa clase
-	//trocar Date por LocalDateTime data,maneira diferente de testar data
+	@UpdateTimestamp //-> Anotação que pega automaticamente hora e data do seu computador
+	private LocalDateTime data ;
 	
-	
-	//Relacionamento entre as tabelas, fazer com que tema e postagem crie relacionamento
 	@ManyToOne
 	@JsonIgnoreProperties("postagem")
 	private Tema tema;
+
+	//Relacionamento entre as tabelas, fazer com que tema e postagem crie relacionamento
+	@ManyToOne
+	@JsonIgnoreProperties("postagem")
+	private Usuario usuario;	
 	
-	
-	
+
+
+
 	//getters e setters da aplicação
-	public long getId() {
+	public Long getId() {
 		return id;
 	}
 
-	public void setId(long id) {
+	public void setId(Long id) {
 		this.id = id;
 	}
 
@@ -73,11 +79,11 @@ public class Postagem {
 		this.texto = texto;
 	}
 
-	public Date getData() {
+	public LocalDateTime getData() {
 		return data;
 	}
 
-	public void setData(Date data) {
+	public void setData(LocalDateTime data) {
 		this.data = data;
 	}
 	public Tema getTema() {
@@ -88,7 +94,14 @@ public class Postagem {
 		this.tema = tema;
 	}
 
-	
+	public Usuario getUsuario() {
+		return this.usuario;
+	}
+
+	public void setUsuario(Usuario usuario) {
+		this.usuario = usuario;
+	}
+
 	
 	
 	
